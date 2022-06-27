@@ -1,0 +1,1138 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    CBRT
+    CHR
+    COMMENT
+    ELSE
+    END
+    ENDL
+    EQL_DIV
+    EQL_MULT
+    EQL_SUB
+    EQL_SUM
+    FLT
+    MULT
+    NOT
+    OBRT
+    OR
+    PCD
+    STR
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> block
+Rule 2     block -> constDecl statement
+Rule 3     constDecl -> constAssignmentList ENDST
+Rule 4     constDecl -> empty
+Rule 5     constAssignmentList -> IDF EQL expression
+Rule 6     constAssignmentList -> constAssignmentList ENDST IDF EQL expression
+Rule 7     identList -> IDF
+Rule 8     identList -> identList CM IDF
+Rule 9     statement -> CALL CAMARA
+Rule 10    statement -> BGN OKEY statementList CKEY
+Rule 11    statement -> IF OPRT condition CPRT OKEY constDecl statement CKEY
+Rule 12    statement -> WHL OPRT condition CPRT OKEY statement CKEY
+Rule 13    statement -> DO OKEY constDecl statement CKEY WHL OPRT condition CPRT
+Rule 14    statement -> CALL MUSICA
+Rule 15    statement -> empty
+Rule 16    statementList -> statement
+Rule 17    statementList -> statementList ENDST statement
+Rule 18    condition -> expression relation expression
+Rule 19    relation -> EQL
+Rule 20    relation -> DIF
+Rule 21    relation -> SML
+Rule 22    relation -> GRT
+Rule 23    relation -> SMLE
+Rule 24    relation -> GRTE
+Rule 25    expression -> term
+Rule 26    expression -> addingOperator term
+Rule 27    expression -> expression addingOperator term
+Rule 28    addingOperator -> ADD
+Rule 29    addingOperator -> SUBST
+Rule 30    term -> factor
+Rule 31    term -> term multiplyingOperator factor
+Rule 32    multiplyingOperator -> DIV
+Rule 33    factor -> IDF
+Rule 34    factor -> INT
+Rule 35    factor -> OPRT expression CPRT
+Rule 36    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ADD                  : 28
+AND                  : 
+BGN                  : 10
+CALL                 : 9 14
+CAMARA               : 9
+CBRT                 : 
+CHR                  : 
+CKEY                 : 10 11 12 13
+CM                   : 8
+COMMENT              : 
+CPRT                 : 11 12 13 35
+DIF                  : 20
+DIV                  : 32
+DO                   : 13
+ELSE                 : 
+END                  : 
+ENDL                 : 
+ENDST                : 3 6 17
+EQL                  : 5 6 19
+EQL_DIV              : 
+EQL_MULT             : 
+EQL_SUB              : 
+EQL_SUM              : 
+FLT                  : 
+GRT                  : 22
+GRTE                 : 24
+IDF                  : 5 6 7 8 33
+IF                   : 11
+INT                  : 34
+MULT                 : 
+MUSICA               : 14
+NOT                  : 
+OBRT                 : 
+OKEY                 : 10 11 12 13
+OPRT                 : 11 12 13 35
+OR                   : 
+PCD                  : 
+SML                  : 21
+SMLE                 : 23
+STR                  : 
+SUBST                : 29
+WHL                  : 12 13
+error                : 
+
+Nonterminals, with rules where they appear
+
+addingOperator       : 26 27
+block                : 1
+condition            : 11 12 13
+constAssignmentList  : 3 6
+constDecl            : 2 11 13
+empty                : 4 15
+expression           : 5 6 18 18 27 35
+factor               : 30 31
+identList            : 8
+multiplyingOperator  : 31
+program              : 0
+relation             : 18
+statement            : 2 11 12 13 16 17
+statementList        : 10 17
+term                 : 25 26 27 31
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . block
+    (2) block -> . constDecl statement
+    (3) constDecl -> . constAssignmentList ENDST
+    (4) constDecl -> . empty
+    (5) constAssignmentList -> . IDF EQL expression
+    (6) constAssignmentList -> . constAssignmentList ENDST IDF EQL expression
+    (36) empty -> .
+
+    IDF             shift and go to state 6
+    CALL            reduce using rule 36 (empty -> .)
+    BGN             reduce using rule 36 (empty -> .)
+    IF              reduce using rule 36 (empty -> .)
+    WHL             reduce using rule 36 (empty -> .)
+    DO              reduce using rule 36 (empty -> .)
+    $end            reduce using rule 36 (empty -> .)
+
+    program                        shift and go to state 1
+    block                          shift and go to state 2
+    constDecl                      shift and go to state 3
+    constAssignmentList            shift and go to state 4
+    empty                          shift and go to state 5
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> block .
+
+    $end            reduce using rule 1 (program -> block .)
+
+
+state 3
+
+    (2) block -> constDecl . statement
+    (9) statement -> . CALL CAMARA
+    (10) statement -> . BGN OKEY statementList CKEY
+    (11) statement -> . IF OPRT condition CPRT OKEY constDecl statement CKEY
+    (12) statement -> . WHL OPRT condition CPRT OKEY statement CKEY
+    (13) statement -> . DO OKEY constDecl statement CKEY WHL OPRT condition CPRT
+    (14) statement -> . CALL MUSICA
+    (15) statement -> . empty
+    (36) empty -> .
+
+    CALL            shift and go to state 8
+    BGN             shift and go to state 9
+    IF              shift and go to state 10
+    WHL             shift and go to state 11
+    DO              shift and go to state 12
+    $end            reduce using rule 36 (empty -> .)
+
+    statement                      shift and go to state 7
+    empty                          shift and go to state 13
+
+state 4
+
+    (3) constDecl -> constAssignmentList . ENDST
+    (6) constAssignmentList -> constAssignmentList . ENDST IDF EQL expression
+
+    ENDST           shift and go to state 14
+
+
+state 5
+
+    (4) constDecl -> empty .
+
+    CALL            reduce using rule 4 (constDecl -> empty .)
+    BGN             reduce using rule 4 (constDecl -> empty .)
+    IF              reduce using rule 4 (constDecl -> empty .)
+    WHL             reduce using rule 4 (constDecl -> empty .)
+    DO              reduce using rule 4 (constDecl -> empty .)
+    $end            reduce using rule 4 (constDecl -> empty .)
+    CKEY            reduce using rule 4 (constDecl -> empty .)
+
+
+state 6
+
+    (5) constAssignmentList -> IDF . EQL expression
+
+    EQL             shift and go to state 15
+
+
+state 7
+
+    (2) block -> constDecl statement .
+
+    $end            reduce using rule 2 (block -> constDecl statement .)
+
+
+state 8
+
+    (9) statement -> CALL . CAMARA
+    (14) statement -> CALL . MUSICA
+
+    CAMARA          shift and go to state 16
+    MUSICA          shift and go to state 17
+
+
+state 9
+
+    (10) statement -> BGN . OKEY statementList CKEY
+
+    OKEY            shift and go to state 18
+
+
+state 10
+
+    (11) statement -> IF . OPRT condition CPRT OKEY constDecl statement CKEY
+
+    OPRT            shift and go to state 19
+
+
+state 11
+
+    (12) statement -> WHL . OPRT condition CPRT OKEY statement CKEY
+
+    OPRT            shift and go to state 20
+
+
+state 12
+
+    (13) statement -> DO . OKEY constDecl statement CKEY WHL OPRT condition CPRT
+
+    OKEY            shift and go to state 21
+
+
+state 13
+
+    (15) statement -> empty .
+
+    $end            reduce using rule 15 (statement -> empty .)
+    CKEY            reduce using rule 15 (statement -> empty .)
+    ENDST           reduce using rule 15 (statement -> empty .)
+
+
+state 14
+
+    (3) constDecl -> constAssignmentList ENDST .
+    (6) constAssignmentList -> constAssignmentList ENDST . IDF EQL expression
+
+    CALL            reduce using rule 3 (constDecl -> constAssignmentList ENDST .)
+    BGN             reduce using rule 3 (constDecl -> constAssignmentList ENDST .)
+    IF              reduce using rule 3 (constDecl -> constAssignmentList ENDST .)
+    WHL             reduce using rule 3 (constDecl -> constAssignmentList ENDST .)
+    DO              reduce using rule 3 (constDecl -> constAssignmentList ENDST .)
+    $end            reduce using rule 3 (constDecl -> constAssignmentList ENDST .)
+    CKEY            reduce using rule 3 (constDecl -> constAssignmentList ENDST .)
+    IDF             shift and go to state 22
+
+
+state 15
+
+    (5) constAssignmentList -> IDF EQL . expression
+    (25) expression -> . term
+    (26) expression -> . addingOperator term
+    (27) expression -> . expression addingOperator term
+    (30) term -> . factor
+    (31) term -> . term multiplyingOperator factor
+    (28) addingOperator -> . ADD
+    (29) addingOperator -> . SUBST
+    (33) factor -> . IDF
+    (34) factor -> . INT
+    (35) factor -> . OPRT expression CPRT
+
+    ADD             shift and go to state 28
+    SUBST           shift and go to state 29
+    IDF             shift and go to state 23
+    INT             shift and go to state 30
+    OPRT            shift and go to state 31
+
+    expression                     shift and go to state 24
+    term                           shift and go to state 25
+    addingOperator                 shift and go to state 26
+    factor                         shift and go to state 27
+
+state 16
+
+    (9) statement -> CALL CAMARA .
+
+    $end            reduce using rule 9 (statement -> CALL CAMARA .)
+    CKEY            reduce using rule 9 (statement -> CALL CAMARA .)
+    ENDST           reduce using rule 9 (statement -> CALL CAMARA .)
+
+
+state 17
+
+    (14) statement -> CALL MUSICA .
+
+    $end            reduce using rule 14 (statement -> CALL MUSICA .)
+    CKEY            reduce using rule 14 (statement -> CALL MUSICA .)
+    ENDST           reduce using rule 14 (statement -> CALL MUSICA .)
+
+
+state 18
+
+    (10) statement -> BGN OKEY . statementList CKEY
+    (16) statementList -> . statement
+    (17) statementList -> . statementList ENDST statement
+    (9) statement -> . CALL CAMARA
+    (10) statement -> . BGN OKEY statementList CKEY
+    (11) statement -> . IF OPRT condition CPRT OKEY constDecl statement CKEY
+    (12) statement -> . WHL OPRT condition CPRT OKEY statement CKEY
+    (13) statement -> . DO OKEY constDecl statement CKEY WHL OPRT condition CPRT
+    (14) statement -> . CALL MUSICA
+    (15) statement -> . empty
+    (36) empty -> .
+
+    CALL            shift and go to state 8
+    BGN             shift and go to state 9
+    IF              shift and go to state 10
+    WHL             shift and go to state 11
+    DO              shift and go to state 12
+    CKEY            reduce using rule 36 (empty -> .)
+    ENDST           reduce using rule 36 (empty -> .)
+
+    statementList                  shift and go to state 32
+    statement                      shift and go to state 33
+    empty                          shift and go to state 13
+
+state 19
+
+    (11) statement -> IF OPRT . condition CPRT OKEY constDecl statement CKEY
+    (18) condition -> . expression relation expression
+    (25) expression -> . term
+    (26) expression -> . addingOperator term
+    (27) expression -> . expression addingOperator term
+    (30) term -> . factor
+    (31) term -> . term multiplyingOperator factor
+    (28) addingOperator -> . ADD
+    (29) addingOperator -> . SUBST
+    (33) factor -> . IDF
+    (34) factor -> . INT
+    (35) factor -> . OPRT expression CPRT
+
+    ADD             shift and go to state 28
+    SUBST           shift and go to state 29
+    IDF             shift and go to state 23
+    INT             shift and go to state 30
+    OPRT            shift and go to state 31
+
+    condition                      shift and go to state 34
+    expression                     shift and go to state 35
+    term                           shift and go to state 25
+    addingOperator                 shift and go to state 26
+    factor                         shift and go to state 27
+
+state 20
+
+    (12) statement -> WHL OPRT . condition CPRT OKEY statement CKEY
+    (18) condition -> . expression relation expression
+    (25) expression -> . term
+    (26) expression -> . addingOperator term
+    (27) expression -> . expression addingOperator term
+    (30) term -> . factor
+    (31) term -> . term multiplyingOperator factor
+    (28) addingOperator -> . ADD
+    (29) addingOperator -> . SUBST
+    (33) factor -> . IDF
+    (34) factor -> . INT
+    (35) factor -> . OPRT expression CPRT
+
+    ADD             shift and go to state 28
+    SUBST           shift and go to state 29
+    IDF             shift and go to state 23
+    INT             shift and go to state 30
+    OPRT            shift and go to state 31
+
+    condition                      shift and go to state 36
+    expression                     shift and go to state 35
+    term                           shift and go to state 25
+    addingOperator                 shift and go to state 26
+    factor                         shift and go to state 27
+
+state 21
+
+    (13) statement -> DO OKEY . constDecl statement CKEY WHL OPRT condition CPRT
+    (3) constDecl -> . constAssignmentList ENDST
+    (4) constDecl -> . empty
+    (5) constAssignmentList -> . IDF EQL expression
+    (6) constAssignmentList -> . constAssignmentList ENDST IDF EQL expression
+    (36) empty -> .
+
+    IDF             shift and go to state 6
+    CALL            reduce using rule 36 (empty -> .)
+    BGN             reduce using rule 36 (empty -> .)
+    IF              reduce using rule 36 (empty -> .)
+    WHL             reduce using rule 36 (empty -> .)
+    DO              reduce using rule 36 (empty -> .)
+    CKEY            reduce using rule 36 (empty -> .)
+
+    constDecl                      shift and go to state 37
+    constAssignmentList            shift and go to state 4
+    empty                          shift and go to state 5
+
+state 22
+
+    (6) constAssignmentList -> constAssignmentList ENDST IDF . EQL expression
+
+    EQL             shift and go to state 38
+
+
+state 23
+
+    (33) factor -> IDF .
+
+    DIV             reduce using rule 33 (factor -> IDF .)
+    ADD             reduce using rule 33 (factor -> IDF .)
+    SUBST           reduce using rule 33 (factor -> IDF .)
+    ENDST           reduce using rule 33 (factor -> IDF .)
+    EQL             reduce using rule 33 (factor -> IDF .)
+    DIF             reduce using rule 33 (factor -> IDF .)
+    SML             reduce using rule 33 (factor -> IDF .)
+    GRT             reduce using rule 33 (factor -> IDF .)
+    SMLE            reduce using rule 33 (factor -> IDF .)
+    GRTE            reduce using rule 33 (factor -> IDF .)
+    CPRT            reduce using rule 33 (factor -> IDF .)
+
+
+state 24
+
+    (5) constAssignmentList -> IDF EQL expression .
+    (27) expression -> expression . addingOperator term
+    (28) addingOperator -> . ADD
+    (29) addingOperator -> . SUBST
+
+    ENDST           reduce using rule 5 (constAssignmentList -> IDF EQL expression .)
+    ADD             shift and go to state 28
+    SUBST           shift and go to state 29
+
+    addingOperator                 shift and go to state 39
+
+state 25
+
+    (25) expression -> term .
+    (31) term -> term . multiplyingOperator factor
+    (32) multiplyingOperator -> . DIV
+
+    ADD             reduce using rule 25 (expression -> term .)
+    SUBST           reduce using rule 25 (expression -> term .)
+    ENDST           reduce using rule 25 (expression -> term .)
+    EQL             reduce using rule 25 (expression -> term .)
+    DIF             reduce using rule 25 (expression -> term .)
+    SML             reduce using rule 25 (expression -> term .)
+    GRT             reduce using rule 25 (expression -> term .)
+    SMLE            reduce using rule 25 (expression -> term .)
+    GRTE            reduce using rule 25 (expression -> term .)
+    CPRT            reduce using rule 25 (expression -> term .)
+    DIV             shift and go to state 41
+
+    multiplyingOperator            shift and go to state 40
+
+state 26
+
+    (26) expression -> addingOperator . term
+    (30) term -> . factor
+    (31) term -> . term multiplyingOperator factor
+    (33) factor -> . IDF
+    (34) factor -> . INT
+    (35) factor -> . OPRT expression CPRT
+
+    IDF             shift and go to state 23
+    INT             shift and go to state 30
+    OPRT            shift and go to state 31
+
+    term                           shift and go to state 42
+    factor                         shift and go to state 27
+
+state 27
+
+    (30) term -> factor .
+
+    DIV             reduce using rule 30 (term -> factor .)
+    ADD             reduce using rule 30 (term -> factor .)
+    SUBST           reduce using rule 30 (term -> factor .)
+    ENDST           reduce using rule 30 (term -> factor .)
+    EQL             reduce using rule 30 (term -> factor .)
+    DIF             reduce using rule 30 (term -> factor .)
+    SML             reduce using rule 30 (term -> factor .)
+    GRT             reduce using rule 30 (term -> factor .)
+    SMLE            reduce using rule 30 (term -> factor .)
+    GRTE            reduce using rule 30 (term -> factor .)
+    CPRT            reduce using rule 30 (term -> factor .)
+
+
+state 28
+
+    (28) addingOperator -> ADD .
+
+    IDF             reduce using rule 28 (addingOperator -> ADD .)
+    INT             reduce using rule 28 (addingOperator -> ADD .)
+    OPRT            reduce using rule 28 (addingOperator -> ADD .)
+
+
+state 29
+
+    (29) addingOperator -> SUBST .
+
+    IDF             reduce using rule 29 (addingOperator -> SUBST .)
+    INT             reduce using rule 29 (addingOperator -> SUBST .)
+    OPRT            reduce using rule 29 (addingOperator -> SUBST .)
+
+
+state 30
+
+    (34) factor -> INT .
+
+    DIV             reduce using rule 34 (factor -> INT .)
+    ADD             reduce using rule 34 (factor -> INT .)
+    SUBST           reduce using rule 34 (factor -> INT .)
+    ENDST           reduce using rule 34 (factor -> INT .)
+    EQL             reduce using rule 34 (factor -> INT .)
+    DIF             reduce using rule 34 (factor -> INT .)
+    SML             reduce using rule 34 (factor -> INT .)
+    GRT             reduce using rule 34 (factor -> INT .)
+    SMLE            reduce using rule 34 (factor -> INT .)
+    GRTE            reduce using rule 34 (factor -> INT .)
+    CPRT            reduce using rule 34 (factor -> INT .)
+
+
+state 31
+
+    (35) factor -> OPRT . expression CPRT
+    (25) expression -> . term
+    (26) expression -> . addingOperator term
+    (27) expression -> . expression addingOperator term
+    (30) term -> . factor
+    (31) term -> . term multiplyingOperator factor
+    (28) addingOperator -> . ADD
+    (29) addingOperator -> . SUBST
+    (33) factor -> . IDF
+    (34) factor -> . INT
+    (35) factor -> . OPRT expression CPRT
+
+    ADD             shift and go to state 28
+    SUBST           shift and go to state 29
+    IDF             shift and go to state 23
+    INT             shift and go to state 30
+    OPRT            shift and go to state 31
+
+    expression                     shift and go to state 43
+    term                           shift and go to state 25
+    addingOperator                 shift and go to state 26
+    factor                         shift and go to state 27
+
+state 32
+
+    (10) statement -> BGN OKEY statementList . CKEY
+    (17) statementList -> statementList . ENDST statement
+
+    CKEY            shift and go to state 44
+    ENDST           shift and go to state 45
+
+
+state 33
+
+    (16) statementList -> statement .
+
+    CKEY            reduce using rule 16 (statementList -> statement .)
+    ENDST           reduce using rule 16 (statementList -> statement .)
+
+
+state 34
+
+    (11) statement -> IF OPRT condition . CPRT OKEY constDecl statement CKEY
+
+    CPRT            shift and go to state 46
+
+
+state 35
+
+    (18) condition -> expression . relation expression
+    (27) expression -> expression . addingOperator term
+    (19) relation -> . EQL
+    (20) relation -> . DIF
+    (21) relation -> . SML
+    (22) relation -> . GRT
+    (23) relation -> . SMLE
+    (24) relation -> . GRTE
+    (28) addingOperator -> . ADD
+    (29) addingOperator -> . SUBST
+
+    EQL             shift and go to state 48
+    DIF             shift and go to state 49
+    SML             shift and go to state 50
+    GRT             shift and go to state 51
+    SMLE            shift and go to state 52
+    GRTE            shift and go to state 53
+    ADD             shift and go to state 28
+    SUBST           shift and go to state 29
+
+    relation                       shift and go to state 47
+    addingOperator                 shift and go to state 39
+
+state 36
+
+    (12) statement -> WHL OPRT condition . CPRT OKEY statement CKEY
+
+    CPRT            shift and go to state 54
+
+
+state 37
+
+    (13) statement -> DO OKEY constDecl . statement CKEY WHL OPRT condition CPRT
+    (9) statement -> . CALL CAMARA
+    (10) statement -> . BGN OKEY statementList CKEY
+    (11) statement -> . IF OPRT condition CPRT OKEY constDecl statement CKEY
+    (12) statement -> . WHL OPRT condition CPRT OKEY statement CKEY
+    (13) statement -> . DO OKEY constDecl statement CKEY WHL OPRT condition CPRT
+    (14) statement -> . CALL MUSICA
+    (15) statement -> . empty
+    (36) empty -> .
+
+    CALL            shift and go to state 8
+    BGN             shift and go to state 9
+    IF              shift and go to state 10
+    WHL             shift and go to state 11
+    DO              shift and go to state 12
+    CKEY            reduce using rule 36 (empty -> .)
+
+    statement                      shift and go to state 55
+    empty                          shift and go to state 13
+
+state 38
+
+    (6) constAssignmentList -> constAssignmentList ENDST IDF EQL . expression
+    (25) expression -> . term
+    (26) expression -> . addingOperator term
+    (27) expression -> . expression addingOperator term
+    (30) term -> . factor
+    (31) term -> . term multiplyingOperator factor
+    (28) addingOperator -> . ADD
+    (29) addingOperator -> . SUBST
+    (33) factor -> . IDF
+    (34) factor -> . INT
+    (35) factor -> . OPRT expression CPRT
+
+    ADD             shift and go to state 28
+    SUBST           shift and go to state 29
+    IDF             shift and go to state 23
+    INT             shift and go to state 30
+    OPRT            shift and go to state 31
+
+    expression                     shift and go to state 56
+    term                           shift and go to state 25
+    addingOperator                 shift and go to state 26
+    factor                         shift and go to state 27
+
+state 39
+
+    (27) expression -> expression addingOperator . term
+    (30) term -> . factor
+    (31) term -> . term multiplyingOperator factor
+    (33) factor -> . IDF
+    (34) factor -> . INT
+    (35) factor -> . OPRT expression CPRT
+
+    IDF             shift and go to state 23
+    INT             shift and go to state 30
+    OPRT            shift and go to state 31
+
+    term                           shift and go to state 57
+    factor                         shift and go to state 27
+
+state 40
+
+    (31) term -> term multiplyingOperator . factor
+    (33) factor -> . IDF
+    (34) factor -> . INT
+    (35) factor -> . OPRT expression CPRT
+
+    IDF             shift and go to state 23
+    INT             shift and go to state 30
+    OPRT            shift and go to state 31
+
+    factor                         shift and go to state 58
+
+state 41
+
+    (32) multiplyingOperator -> DIV .
+
+    IDF             reduce using rule 32 (multiplyingOperator -> DIV .)
+    INT             reduce using rule 32 (multiplyingOperator -> DIV .)
+    OPRT            reduce using rule 32 (multiplyingOperator -> DIV .)
+
+
+state 42
+
+    (26) expression -> addingOperator term .
+    (31) term -> term . multiplyingOperator factor
+    (32) multiplyingOperator -> . DIV
+
+    ADD             reduce using rule 26 (expression -> addingOperator term .)
+    SUBST           reduce using rule 26 (expression -> addingOperator term .)
+    ENDST           reduce using rule 26 (expression -> addingOperator term .)
+    EQL             reduce using rule 26 (expression -> addingOperator term .)
+    DIF             reduce using rule 26 (expression -> addingOperator term .)
+    SML             reduce using rule 26 (expression -> addingOperator term .)
+    GRT             reduce using rule 26 (expression -> addingOperator term .)
+    SMLE            reduce using rule 26 (expression -> addingOperator term .)
+    GRTE            reduce using rule 26 (expression -> addingOperator term .)
+    CPRT            reduce using rule 26 (expression -> addingOperator term .)
+    DIV             shift and go to state 41
+
+    multiplyingOperator            shift and go to state 40
+
+state 43
+
+    (35) factor -> OPRT expression . CPRT
+    (27) expression -> expression . addingOperator term
+    (28) addingOperator -> . ADD
+    (29) addingOperator -> . SUBST
+
+    CPRT            shift and go to state 59
+    ADD             shift and go to state 28
+    SUBST           shift and go to state 29
+
+    addingOperator                 shift and go to state 39
+
+state 44
+
+    (10) statement -> BGN OKEY statementList CKEY .
+
+    $end            reduce using rule 10 (statement -> BGN OKEY statementList CKEY .)
+    CKEY            reduce using rule 10 (statement -> BGN OKEY statementList CKEY .)
+    ENDST           reduce using rule 10 (statement -> BGN OKEY statementList CKEY .)
+
+
+state 45
+
+    (17) statementList -> statementList ENDST . statement
+    (9) statement -> . CALL CAMARA
+    (10) statement -> . BGN OKEY statementList CKEY
+    (11) statement -> . IF OPRT condition CPRT OKEY constDecl statement CKEY
+    (12) statement -> . WHL OPRT condition CPRT OKEY statement CKEY
+    (13) statement -> . DO OKEY constDecl statement CKEY WHL OPRT condition CPRT
+    (14) statement -> . CALL MUSICA
+    (15) statement -> . empty
+    (36) empty -> .
+
+    CALL            shift and go to state 8
+    BGN             shift and go to state 9
+    IF              shift and go to state 10
+    WHL             shift and go to state 11
+    DO              shift and go to state 12
+    CKEY            reduce using rule 36 (empty -> .)
+    ENDST           reduce using rule 36 (empty -> .)
+
+    statement                      shift and go to state 60
+    empty                          shift and go to state 13
+
+state 46
+
+    (11) statement -> IF OPRT condition CPRT . OKEY constDecl statement CKEY
+
+    OKEY            shift and go to state 61
+
+
+state 47
+
+    (18) condition -> expression relation . expression
+    (25) expression -> . term
+    (26) expression -> . addingOperator term
+    (27) expression -> . expression addingOperator term
+    (30) term -> . factor
+    (31) term -> . term multiplyingOperator factor
+    (28) addingOperator -> . ADD
+    (29) addingOperator -> . SUBST
+    (33) factor -> . IDF
+    (34) factor -> . INT
+    (35) factor -> . OPRT expression CPRT
+
+    ADD             shift and go to state 28
+    SUBST           shift and go to state 29
+    IDF             shift and go to state 23
+    INT             shift and go to state 30
+    OPRT            shift and go to state 31
+
+    expression                     shift and go to state 62
+    term                           shift and go to state 25
+    addingOperator                 shift and go to state 26
+    factor                         shift and go to state 27
+
+state 48
+
+    (19) relation -> EQL .
+
+    ADD             reduce using rule 19 (relation -> EQL .)
+    SUBST           reduce using rule 19 (relation -> EQL .)
+    IDF             reduce using rule 19 (relation -> EQL .)
+    INT             reduce using rule 19 (relation -> EQL .)
+    OPRT            reduce using rule 19 (relation -> EQL .)
+
+
+state 49
+
+    (20) relation -> DIF .
+
+    ADD             reduce using rule 20 (relation -> DIF .)
+    SUBST           reduce using rule 20 (relation -> DIF .)
+    IDF             reduce using rule 20 (relation -> DIF .)
+    INT             reduce using rule 20 (relation -> DIF .)
+    OPRT            reduce using rule 20 (relation -> DIF .)
+
+
+state 50
+
+    (21) relation -> SML .
+
+    ADD             reduce using rule 21 (relation -> SML .)
+    SUBST           reduce using rule 21 (relation -> SML .)
+    IDF             reduce using rule 21 (relation -> SML .)
+    INT             reduce using rule 21 (relation -> SML .)
+    OPRT            reduce using rule 21 (relation -> SML .)
+
+
+state 51
+
+    (22) relation -> GRT .
+
+    ADD             reduce using rule 22 (relation -> GRT .)
+    SUBST           reduce using rule 22 (relation -> GRT .)
+    IDF             reduce using rule 22 (relation -> GRT .)
+    INT             reduce using rule 22 (relation -> GRT .)
+    OPRT            reduce using rule 22 (relation -> GRT .)
+
+
+state 52
+
+    (23) relation -> SMLE .
+
+    ADD             reduce using rule 23 (relation -> SMLE .)
+    SUBST           reduce using rule 23 (relation -> SMLE .)
+    IDF             reduce using rule 23 (relation -> SMLE .)
+    INT             reduce using rule 23 (relation -> SMLE .)
+    OPRT            reduce using rule 23 (relation -> SMLE .)
+
+
+state 53
+
+    (24) relation -> GRTE .
+
+    ADD             reduce using rule 24 (relation -> GRTE .)
+    SUBST           reduce using rule 24 (relation -> GRTE .)
+    IDF             reduce using rule 24 (relation -> GRTE .)
+    INT             reduce using rule 24 (relation -> GRTE .)
+    OPRT            reduce using rule 24 (relation -> GRTE .)
+
+
+state 54
+
+    (12) statement -> WHL OPRT condition CPRT . OKEY statement CKEY
+
+    OKEY            shift and go to state 63
+
+
+state 55
+
+    (13) statement -> DO OKEY constDecl statement . CKEY WHL OPRT condition CPRT
+
+    CKEY            shift and go to state 64
+
+
+state 56
+
+    (6) constAssignmentList -> constAssignmentList ENDST IDF EQL expression .
+    (27) expression -> expression . addingOperator term
+    (28) addingOperator -> . ADD
+    (29) addingOperator -> . SUBST
+
+    ENDST           reduce using rule 6 (constAssignmentList -> constAssignmentList ENDST IDF EQL expression .)
+    ADD             shift and go to state 28
+    SUBST           shift and go to state 29
+
+    addingOperator                 shift and go to state 39
+
+state 57
+
+    (27) expression -> expression addingOperator term .
+    (31) term -> term . multiplyingOperator factor
+    (32) multiplyingOperator -> . DIV
+
+    ADD             reduce using rule 27 (expression -> expression addingOperator term .)
+    SUBST           reduce using rule 27 (expression -> expression addingOperator term .)
+    ENDST           reduce using rule 27 (expression -> expression addingOperator term .)
+    EQL             reduce using rule 27 (expression -> expression addingOperator term .)
+    DIF             reduce using rule 27 (expression -> expression addingOperator term .)
+    SML             reduce using rule 27 (expression -> expression addingOperator term .)
+    GRT             reduce using rule 27 (expression -> expression addingOperator term .)
+    SMLE            reduce using rule 27 (expression -> expression addingOperator term .)
+    GRTE            reduce using rule 27 (expression -> expression addingOperator term .)
+    CPRT            reduce using rule 27 (expression -> expression addingOperator term .)
+    DIV             shift and go to state 41
+
+    multiplyingOperator            shift and go to state 40
+
+state 58
+
+    (31) term -> term multiplyingOperator factor .
+
+    DIV             reduce using rule 31 (term -> term multiplyingOperator factor .)
+    ADD             reduce using rule 31 (term -> term multiplyingOperator factor .)
+    SUBST           reduce using rule 31 (term -> term multiplyingOperator factor .)
+    ENDST           reduce using rule 31 (term -> term multiplyingOperator factor .)
+    EQL             reduce using rule 31 (term -> term multiplyingOperator factor .)
+    DIF             reduce using rule 31 (term -> term multiplyingOperator factor .)
+    SML             reduce using rule 31 (term -> term multiplyingOperator factor .)
+    GRT             reduce using rule 31 (term -> term multiplyingOperator factor .)
+    SMLE            reduce using rule 31 (term -> term multiplyingOperator factor .)
+    GRTE            reduce using rule 31 (term -> term multiplyingOperator factor .)
+    CPRT            reduce using rule 31 (term -> term multiplyingOperator factor .)
+
+
+state 59
+
+    (35) factor -> OPRT expression CPRT .
+
+    DIV             reduce using rule 35 (factor -> OPRT expression CPRT .)
+    ADD             reduce using rule 35 (factor -> OPRT expression CPRT .)
+    SUBST           reduce using rule 35 (factor -> OPRT expression CPRT .)
+    ENDST           reduce using rule 35 (factor -> OPRT expression CPRT .)
+    EQL             reduce using rule 35 (factor -> OPRT expression CPRT .)
+    DIF             reduce using rule 35 (factor -> OPRT expression CPRT .)
+    SML             reduce using rule 35 (factor -> OPRT expression CPRT .)
+    GRT             reduce using rule 35 (factor -> OPRT expression CPRT .)
+    SMLE            reduce using rule 35 (factor -> OPRT expression CPRT .)
+    GRTE            reduce using rule 35 (factor -> OPRT expression CPRT .)
+    CPRT            reduce using rule 35 (factor -> OPRT expression CPRT .)
+
+
+state 60
+
+    (17) statementList -> statementList ENDST statement .
+
+    CKEY            reduce using rule 17 (statementList -> statementList ENDST statement .)
+    ENDST           reduce using rule 17 (statementList -> statementList ENDST statement .)
+
+
+state 61
+
+    (11) statement -> IF OPRT condition CPRT OKEY . constDecl statement CKEY
+    (3) constDecl -> . constAssignmentList ENDST
+    (4) constDecl -> . empty
+    (5) constAssignmentList -> . IDF EQL expression
+    (6) constAssignmentList -> . constAssignmentList ENDST IDF EQL expression
+    (36) empty -> .
+
+    IDF             shift and go to state 6
+    CALL            reduce using rule 36 (empty -> .)
+    BGN             reduce using rule 36 (empty -> .)
+    IF              reduce using rule 36 (empty -> .)
+    WHL             reduce using rule 36 (empty -> .)
+    DO              reduce using rule 36 (empty -> .)
+    CKEY            reduce using rule 36 (empty -> .)
+
+    constDecl                      shift and go to state 65
+    constAssignmentList            shift and go to state 4
+    empty                          shift and go to state 5
+
+state 62
+
+    (18) condition -> expression relation expression .
+    (27) expression -> expression . addingOperator term
+    (28) addingOperator -> . ADD
+    (29) addingOperator -> . SUBST
+
+    CPRT            reduce using rule 18 (condition -> expression relation expression .)
+    ADD             shift and go to state 28
+    SUBST           shift and go to state 29
+
+    addingOperator                 shift and go to state 39
+
+state 63
+
+    (12) statement -> WHL OPRT condition CPRT OKEY . statement CKEY
+    (9) statement -> . CALL CAMARA
+    (10) statement -> . BGN OKEY statementList CKEY
+    (11) statement -> . IF OPRT condition CPRT OKEY constDecl statement CKEY
+    (12) statement -> . WHL OPRT condition CPRT OKEY statement CKEY
+    (13) statement -> . DO OKEY constDecl statement CKEY WHL OPRT condition CPRT
+    (14) statement -> . CALL MUSICA
+    (15) statement -> . empty
+    (36) empty -> .
+
+    CALL            shift and go to state 8
+    BGN             shift and go to state 9
+    IF              shift and go to state 10
+    WHL             shift and go to state 11
+    DO              shift and go to state 12
+    CKEY            reduce using rule 36 (empty -> .)
+
+    statement                      shift and go to state 66
+    empty                          shift and go to state 13
+
+state 64
+
+    (13) statement -> DO OKEY constDecl statement CKEY . WHL OPRT condition CPRT
+
+    WHL             shift and go to state 67
+
+
+state 65
+
+    (11) statement -> IF OPRT condition CPRT OKEY constDecl . statement CKEY
+    (9) statement -> . CALL CAMARA
+    (10) statement -> . BGN OKEY statementList CKEY
+    (11) statement -> . IF OPRT condition CPRT OKEY constDecl statement CKEY
+    (12) statement -> . WHL OPRT condition CPRT OKEY statement CKEY
+    (13) statement -> . DO OKEY constDecl statement CKEY WHL OPRT condition CPRT
+    (14) statement -> . CALL MUSICA
+    (15) statement -> . empty
+    (36) empty -> .
+
+    CALL            shift and go to state 8
+    BGN             shift and go to state 9
+    IF              shift and go to state 10
+    WHL             shift and go to state 11
+    DO              shift and go to state 12
+    CKEY            reduce using rule 36 (empty -> .)
+
+    statement                      shift and go to state 68
+    empty                          shift and go to state 13
+
+state 66
+
+    (12) statement -> WHL OPRT condition CPRT OKEY statement . CKEY
+
+    CKEY            shift and go to state 69
+
+
+state 67
+
+    (13) statement -> DO OKEY constDecl statement CKEY WHL . OPRT condition CPRT
+
+    OPRT            shift and go to state 70
+
+
+state 68
+
+    (11) statement -> IF OPRT condition CPRT OKEY constDecl statement . CKEY
+
+    CKEY            shift and go to state 71
+
+
+state 69
+
+    (12) statement -> WHL OPRT condition CPRT OKEY statement CKEY .
+
+    $end            reduce using rule 12 (statement -> WHL OPRT condition CPRT OKEY statement CKEY .)
+    CKEY            reduce using rule 12 (statement -> WHL OPRT condition CPRT OKEY statement CKEY .)
+    ENDST           reduce using rule 12 (statement -> WHL OPRT condition CPRT OKEY statement CKEY .)
+
+
+state 70
+
+    (13) statement -> DO OKEY constDecl statement CKEY WHL OPRT . condition CPRT
+    (18) condition -> . expression relation expression
+    (25) expression -> . term
+    (26) expression -> . addingOperator term
+    (27) expression -> . expression addingOperator term
+    (30) term -> . factor
+    (31) term -> . term multiplyingOperator factor
+    (28) addingOperator -> . ADD
+    (29) addingOperator -> . SUBST
+    (33) factor -> . IDF
+    (34) factor -> . INT
+    (35) factor -> . OPRT expression CPRT
+
+    ADD             shift and go to state 28
+    SUBST           shift and go to state 29
+    IDF             shift and go to state 23
+    INT             shift and go to state 30
+    OPRT            shift and go to state 31
+
+    condition                      shift and go to state 72
+    expression                     shift and go to state 35
+    term                           shift and go to state 25
+    addingOperator                 shift and go to state 26
+    factor                         shift and go to state 27
+
+state 71
+
+    (11) statement -> IF OPRT condition CPRT OKEY constDecl statement CKEY .
+
+    $end            reduce using rule 11 (statement -> IF OPRT condition CPRT OKEY constDecl statement CKEY .)
+    CKEY            reduce using rule 11 (statement -> IF OPRT condition CPRT OKEY constDecl statement CKEY .)
+    ENDST           reduce using rule 11 (statement -> IF OPRT condition CPRT OKEY constDecl statement CKEY .)
+
+
+state 72
+
+    (13) statement -> DO OKEY constDecl statement CKEY WHL OPRT condition . CPRT
+
+    CPRT            shift and go to state 73
+
+
+state 73
+
+    (13) statement -> DO OKEY constDecl statement CKEY WHL OPRT condition CPRT .
+
+    $end            reduce using rule 13 (statement -> DO OKEY constDecl statement CKEY WHL OPRT condition CPRT .)
+    CKEY            reduce using rule 13 (statement -> DO OKEY constDecl statement CKEY WHL OPRT condition CPRT .)
+    ENDST           reduce using rule 13 (statement -> DO OKEY constDecl statement CKEY WHL OPRT condition CPRT .)
+
