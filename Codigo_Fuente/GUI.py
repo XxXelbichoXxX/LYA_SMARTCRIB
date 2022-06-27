@@ -1,13 +1,12 @@
 import tkinter as tk
 from tkinter import messagebox as MessageBox
 import os
-from Codigo_Fuente.Funciones import camara as cm, camara as c
+from Codigo_Fuente.Funciones import camara as cm, camara as c, vozArchivo as vo
 from tkinter import scrolledtext as st
 import sys
 from tkinter import filedialog as fd
 from tkinter import messagebox as mb
 from Codigo_Fuente import variables as v
-from Codigo_Fuente import vozArchivo as vo
 import analizadorLexico as aL
 import analizadorSintactico as aS
 
