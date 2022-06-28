@@ -7,7 +7,7 @@ def obtener(test):
         audio = r.listen(source)
         try:
             text = "Estoy procesando tu consulta"
-            os.system("start C:\\analizadorToxic\\Codigo_Fuente\\Audio\\proceso.mp3")
+            os.system("start C:\\LYA_SMARTCRIB-master\\codigo_fuente\\Audio\\proceso.mp3")
             text = r.recognize_google(audio, language='es-MX').lower()
             text = text.replace('abre paréntesis', '(')
             text = text.replace('cierra paréntesis', ')')
